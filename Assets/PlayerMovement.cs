@@ -81,4 +81,9 @@ public class PlayerMovement : MonoBehaviour
             rb.AddTorque(new Vector3(0, horizontalInput * rotationSpeed, 0), ForceMode.Force);
         }
     }
+
+    public Vector3 GetCurrentVelocity()
+    {
+        return rb.velocity;
+    }
 }
