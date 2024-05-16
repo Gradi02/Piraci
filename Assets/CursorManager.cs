@@ -45,36 +45,37 @@ public class CursorManager : MonoBehaviour
         float angle = Vector3.Angle(pointVector, player.transform.forward);
         Debug.Log(angle);
 
-        if(angle >= maxAngle && angle <= (maxAngle + playAngle))
+
+
+
+
+        if (angle >= maxAngle && angle <= maxAngle+playAngle)
         {
             finalPoint = lastPoint;
         }
         else
         {
-/*            float dst = Vector3.Distance(lastPoint, player.transform.position);
+            float dst = Vector3.Distance(lastPoint, player.transform.position);
+            Vector3[] poss = new Vector3[4];
 
-            if(lastPoint.x > player.transform.position.x)
+            //Vector3 direction = Quaternion.AngleAxis(maxAngle, Vector3.up) * player.transform.right;
+            //Vector3 targetPosition = player.transform.position + direction.normalized * dst;
+
+            poss[0] = player.transform.position + Quaternion.AngleAxis(maxAngle, Vector3.up) * player.transform.right * dst;
+            poss[1] = player.transform.position + Quaternion.AngleAxis(maxAngle+playAngle, Vector3.up) * player.transform.right * dst;
+            poss[2] = player.transform.position + Quaternion.AngleAxis(maxAngle, Vector3.up) * -player.transform.right * dst;
+            poss[3] = player.transform.position + Quaternion.AngleAxis(maxAngle+playAngle, Vector3.up) * -player.transform.right* dst;
+
+            Vector3 closest = poss[0];
+            for(int i=1; i<4; i++)
             {
-                if(angle < maxAngle)
+                if(Vector3.Distance(lastPoint, closest) > Vector3.Distance(lastPoint, poss[i]))
                 {
-                    finalPoint = new Vector3(dst * Mathf.Cos(maxAngle), 0, dst * Mathf.Sin(maxAngle));
-                }
-                else
-                {
-                    finalPoint = new Vector3(dst * Mathf.Cos(maxAngle), 0, dst * Mathf.Sin(maxAngle));
+                    closest = poss[i];
                 }
             }
-            else
-            {
-                if (angle < maxAngle)
-                {
-                    finalPoint = new Vector3(dst * Mathf.Cos(180 + maxAngle+playAngle), 0, dst * Mathf.Sin(180 + maxAngle + playAngle));
-                }
-                else
-                {
-                    finalPoint = new Vector3((-player.transform.right - maxAngle) * dst, 0, -player.transform.right.x * dst);
-                }
-            }*/
+
+            finalPoint = closest;
         }
         
     }
