@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.drag = 0.5f;
         rb.angularDrag = 0.5f;
+        rb.useGravity = false;
     }
 
 
@@ -47,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Mathf.Clamp(Input.GetAxisRaw("Horizontal") + Random.Range(-0.1f, 0.1f), -1, 1);
         verticalInput = Input.GetAxisRaw("Vertical");
     }
 
