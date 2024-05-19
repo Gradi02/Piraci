@@ -43,7 +43,7 @@ public class CursorManager : MonoBehaviour
     {
         Vector3 pointVector = lastPoint - player.transform.position;
         float angle = Vector3.Angle(pointVector, player.transform.forward);
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
 
 
